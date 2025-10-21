@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Confira todos os produtos da Loja 3F">
+    <title>Produtos - Loja 3F</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .filters-bar {
+            background-color: var(--black-secondary);
+            padding: 2rem;
+            border-radius: 8px;
+            border: 1px solid var(--gold-primary);
+            margin-bottom: 3rem;
+            display: flex;
+            gap: 2rem;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .filter-group {
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .filter-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--gold-primary);
+            font-weight: 600;
+        }
+
+        .filter-group select,
+        .filter-group input {
+            width: 100%;
+            padding: 0.75rem;
+            background-color: var(--black-primary);
+            border: 1px solid var(--gold-primary);
+            color: var(--text-light);
+            border-radius: 4px;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .filter-group select:focus,
+        .filter-group input:focus {
+            outline: none;
+            border-color: var(--gold-secondary);
+            box-shadow: 0 0 0 3px rgba(221, 157, 23, 0.1);
+        }
+
+        .products-count {
+            color: #999;
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+        }
+
+        .page-hero {
+            background: linear-gradient(135deg, rgba(221, 157, 23, 0.2), rgba(222, 165, 45, 0.2));
+            padding: 4rem 2rem;
+            text-align: center;
+            margin-top: 80px;
+            margin-bottom: 3rem;
+        }
+
+        .page-hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .page-hero .highlight {
+            color: var(--gold-primary);
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header" id="header">
+        <div class="header-container">
+            <a href="index.html" class="logo">Loja 3F</a>
+            
+            <nav>
+                <ul class="nav-menu">
+                    <li><a href="index.html">Início</a></li>
+                    <li><a href="produtos.html" class="active">Produtos</a></li>
+                </ul>
+            </nav>
+
+            <button class="cart-icon" onclick="window.location.href='carrinho.html'">
+                <i class="fas fa-shopping-cart"></i>
+                <span class="cart-count" id="cart-count">0</span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Page Hero -->
+    <div class="page-hero">
+        <h1>Nossos <span class="highlight">Produtos</span></h1>
+        <p style="font-size: 1.2rem; color: #999; max-width: 600px; margin: 0 auto;">
+            Explore nossa coleção completa de vestuário com estilo e qualidade
+        </p>
+    </div>
+
+    <!-- Main Content -->
+    <main class="section">
+        <!-- Filtros -->
+        <div class="filters-bar">
+            <div style="display: flex; align-items: center; gap: 0.5rem;">
+                <i class="fas fa-filter" style="color: var(--gold-primary); font-size: 1.5rem;"></i>
+                <span style="font-weight: 600; font-size: 1.1rem;">Filtros:</span>
+            </div>
+
+            <div class="filter-group">
+                <label for="searchInput">
+                    <i class="fas fa-search"></i> Buscar
+                </label>
+                <input 
+                    type="text" 
+                    id="searchInput" 
+                    placeholder="Digite o nome do produto..."
+                    onkeyup="applyFilters()"
+                >
+            </div>
+
+            <div class="filter-group">
+                <label for="sortSelect">
+                    <i class="fas fa-sort"></i> Ordenar por
+                </label>
+                <select id="sortSelect" onchange="applyFilters()">
+                    <option value="newest">Mais Recentes</option>
+                    <option value="price-asc">Menor Preço</option>
+                    <option value="price-desc">Maior Preço</option>
+                    <option value="name">Nome (A-Z)</option>
+                </select>
+            </div>
+
+            <button class="btn btn-outline" onclick="clearFilters()" style="align-self: flex-end;">
+                <i class="fas fa-times"></i> Limpar Filtros
+            </button>
+        </div>
+
+        <!-- Contagem de Produtos -->
+        <div class="products-count" id="productsCount">
+            Mostrando <strong>0</strong> produto(s)
+        </div>
+
+        <!-- Grid de Produtos -->
+        <div class="products-grid" id="allProducts">
+            <!-- Produtos serão carregados via JavaScript -->
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-section">
+                <h3>Loja 3F</h3>
+                <p>Vestuário de qualidade com estilo único. Camisas e bonés exclusivos para quem busca autenticidade.</p>
+                <div class="social-links">
+                    <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="https://facebook.com" target="_blank" rel="noopener noreferrer">
+                        <i class="fab fa-facebook"></i>
+                    </a>
+                    <a href="https://twitter.com" target="_blank" rel="noopener noreferrer">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                </div>
+            </div>
+
+            <div class="footer-section">
+                <h3>Links Rápidos</h3>
+                <p><a href="index.html">Início</a></p>
+                <p><a href="produtos.html">Produtos</a></p>
+                <p><a href="carrinho.html">Carrinho</a></p>
+            </div>
+
+            <div class="footer-section">
+                <h3>Contato</h3>
+                <p><i class="fas fa-phone"></i> (11) 99999-9999</p>
+                <p><i class="fas fa-envelope"></i> contato@loja3f.com.br</p>
+                <p><i class="fas fa-map-marker-alt"></i> São Paulo, SP - Brasil</p>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2025 Loja 3F. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script src="js/products.js"></script>
+    <script>
+        // Aplicar filtros e ordenação
+        function applyFilters() {
+            const searchTerm = document.getElementById('searchInput').value;
+            const sortBy = document.getElementById('sortSelect').value;
+            
+            let products = filterProducts({ search: searchTerm });
+            products = sortProducts(products, sortBy);
+            
+            renderProducts(products, 'allProducts');
+            updateProductsCount(products.length);
+        }
+
+        // Limpar filtros
+        function clearFilters() {
+            document.getElementById('searchInput').value = '';
+            document.getElementById('sortSelect').value = 'newest';
+            applyFilters();
+        }
+
+        // Atualizar contagem de produtos
+        function updateProductsCount(count) {
+            const countElement = document.getElementById('productsCount');
+            countElement.innerHTML = `Mostrando <strong>${count}</strong> produto(s)`;
+        }
+
+        // Carregar produtos ao iniciar
+        document.addEventListener('DOMContentLoaded', () => {
+            applyFilters();
+        });
+    </script>
+</body>
+</html>
+

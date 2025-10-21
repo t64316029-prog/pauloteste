@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Detalhes do produto">
+    <title>Produto - Loja 3F</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/produto-detalhes.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .product-detail-container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 2rem;
+            margin-top: 100px;
+        }
+
+        .breadcrumb {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 2rem;
+            color: #999;
+            font-size: 0.9rem;
+        }
+
+        .breadcrumb a {
+            color: var(--gold-primary);
+        }
+
+        .breadcrumb a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            .product-detail-container > div {
+                grid-template-columns: 1fr !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header" id="header">
+        <div class="header-container">
+            <a href="index.html" class="logo">Loja 3F</a>
+            
+            <nav>
+                <ul class="nav-menu">
+                    <li><a href="index.html">Início</a></li>
+                    <li><a href="produtos.html">Produtos</a></li>
+                </ul>
+            </nav>
+
+            <button class="cart-icon" onclick="window.location.href='carrinho.html'">
+                <i class="fas fa-shopping-cart"></i>
+                <span class="cart-count" id="cart-count">0</span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Product Detail -->
+    <div class="product-detail-container">
+        <div class="breadcrumb">
+            <a href="index.html">Início</a>
+            <span>/</span>
+            <a href="produtos.html">Produtos</a>
+            <span>/</span>
+            <span>Detalhes</span>
+        </div>
+
+        <div id="productDetail">
+            <!-- Detalhes do produto serão carregados via JavaScript -->
+        </div>
+
+        <!-- Produtos Relacionados -->
+        <section style="margin-top: 5rem;">
+            <h2 class="section-title">Você também pode <span class="highlight">gostar</span></h2>
+            <div class="products-grid" id="relatedProducts"></div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-section">
+                <h3>Loja 3F</h3>
+                <p>Vestuário de qualidade com estilo único. Camisas e bonés exclusivos para quem busca autenticidade.</p>
+                <div class="social-links">
+                    <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="https://facebook.com" target="_blank" rel="noopener noreferrer">
+                        <i class="fab fa-facebook"></i>
+                    </a>
+                    <a href="https://twitter.com" target="_blank" rel="noopener noreferrer">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                </div>
+            </div>
+
+            <div class="footer-section">
+                <h3>Links Rápidos</h3>
+                <p><a href="index.html">Início</a></p>
+                <p><a href="produtos.html">Produtos</a></p>
+                <p><a href="carrinho.html">Carrinho</a></p>
+            </div>
+
+            <div class="footer-section">
+                <h3>Contato</h3>
+                <p><i class="fas fa-phone"></i> (11) 99999-9999</p>
+                <p><i class="fas fa-envelope"></i> contato@loja3f.com.br</p>
+                <p><i class="fas fa-map-marker-alt"></i> São Paulo, SP - Brasil</p>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2025 Loja 3F. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script src="js/products.js"></script>
+    <script>
+        // Carregar produtos relacionados
+        document.addEventListener('DOMContentLoaded', () => {
+            const relatedProducts = getHighlightProducts().slice(0, 4);
+            renderProducts(relatedProducts, 'relatedProducts');
+        });
+    </script>
+</body>
+</html>
+

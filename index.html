@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Loja 3F - Vestuário de qualidade com estilo único">
+    <title>Loja 3F - Home</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header" id="header">
+        <div class="header-container">
+            <a href="index.html" class="logo">Loja 3F</a>
+            
+            <nav>
+                <ul class="nav-menu">
+                    <li><a href="index.html" class="active">Início</a></li>
+                    <li><a href="produtos.html">Produtos</a></li>
+                </ul>
+            </nav>
+
+            <button class="cart-icon" onclick="window.location.href='carrinho.html'">
+                <i class="fas fa-shopping-cart"></i>
+                <span class="cart-count" id="cart-count">0</span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Hero Slider -->
+    <section class="hero-slider" id="heroSlider">
+        <div class="slide active">
+            <img src="images/modelo1.jpg" alt="Coleção Exclusiva">
+            <div class="slide-overlay">
+                <div class="slide-content">
+                    <h2>Coleção Exclusiva</h2>
+                    <p>Estilo único para você</p>
+                    <a href="produtos.html" class="btn btn-primary">
+                        <i class="fas fa-shopping-bag"></i>
+                        Ver Produtos
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="slide">
+            <img src="images/modelo2.jpg" alt="Qualidade Premium">
+            <div class="slide-overlay">
+                <div class="slide-content">
+                    <h2>Qualidade Premium</h2>
+                    <p>100% algodão de alta qualidade</p>
+                    <a href="produtos.html" class="btn btn-primary">
+                        <i class="fas fa-shopping-bag"></i>
+                        Ver Produtos
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="slide">
+            <img src="images/modelo3.jpg" alt="Novidades">
+            <div class="slide-overlay">
+                <div class="slide-content">
+                    <h2>Novidades</h2>
+                    <p>Confira os lançamentos</p>
+                    <a href="produtos.html" class="btn btn-primary">
+                        <i class="fas fa-shopping-bag"></i>
+                        Ver Produtos
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <button class="slider-arrow prev" onclick="changeSlide(-1)">
+            <i class="fas fa-chevron-left"></i>
+        </button>
+        <button class="slider-arrow next" onclick="changeSlide(1)">
+            <i class="fas fa-chevron-right"></i>
+        </button>
+
+        <div class="slider-controls" id="sliderControls"></div>
+    </section>
+
+    <!-- Produtos em Destaque -->
+    <section class="section">
+        <h2 class="section-title">Produtos em <span class="highlight">Destaque</span></h2>
+        <p class="section-subtitle">Confira nossa seleção especial de produtos com os melhores designs e qualidade</p>
+        
+        <div class="products-grid" id="highlightProducts">
+            <!-- Produtos serão carregados via JavaScript -->
+        </div>
+
+        <div style="text-align: center; margin-top: 3rem;">
+            <a href="produtos.html" class="btn btn-outline">Ver Todos os Produtos</a>
+        </div>
+    </section>
+
+    <!-- Benefícios -->
+    <section class="section" style="background-color: var(--black-secondary); padding: 4rem 2rem; margin: 0 -2rem;">
+        <div style="max-width: 1280px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 3rem;">
+            <div style="text-align: center; padding: 2rem;">
+                <div style="width: 80px; height: 80px; background: rgba(221, 157, 23, 0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem;">
+                    <i class="fas fa-check-circle" style="font-size: 2.5rem; color: var(--gold-primary);"></i>
+                </div>
+                <h3 style="font-size: 1.5rem; margin-bottom: 1rem;">Qualidade Garantida</h3>
+                <p style="color: #999;">Produtos de alta qualidade com garantia de satisfação</p>
+            </div>
+
+            <div style="text-align: center; padding: 2rem;">
+                <div style="width: 80px; height: 80px; background: rgba(221, 157, 23, 0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem;">
+                    <i class="fas fa-dollar-sign" style="font-size: 2.5rem; color: var(--gold-primary);"></i>
+                </div>
+                <h3 style="font-size: 1.5rem; margin-bottom: 1rem;">Melhor Preço</h3>
+                <p style="color: #999;">Preços competitivos e promoções exclusivas</p>
+            </div>
+
+            <div style="text-align: center; padding: 2rem;">
+                <div style="width: 80px; height: 80px; background: rgba(221, 157, 23, 0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem;">
+                    <i class="fas fa-shipping-fast" style="font-size: 2.5rem; color: var(--gold-primary);"></i>
+                </div>
+                <h3 style="font-size: 1.5rem; margin-bottom: 1rem;">Entrega Rápida</h3>
+                <p style="color: #999;">Receba seus produtos com agilidade e segurança</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-section">
+                <h3>Loja 3F</h3>
+                <p>Vestuário de qualidade com estilo único. Camisas e bonés exclusivos para quem busca autenticidade.</p>
+                <div class="social-links">
+                    <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="https://facebook.com" target="_blank" rel="noopener noreferrer">
+                        <i class="fab fa-facebook"></i>
+                    </a>
+                    <a href="https://twitter.com" target="_blank" rel="noopener noreferrer">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                </div>
+            </div>
+
+            <div class="footer-section">
+                <h3>Links Rápidos</h3>
+                <p><a href="index.html">Início</a></p>
+                <p><a href="produtos.html">Produtos</a></p>
+                <p><a href="carrinho.html">Carrinho</a></p>
+            </div>
+
+            <div class="footer-section">
+                <h3>Contato</h3>
+                <p><i class="fas fa-phone"></i> (11) 99999-9999</p>
+                <p><i class="fas fa-envelope"></i> contato@loja3f.com.br</p>
+                <p><i class="fas fa-map-marker-alt"></i> São Paulo, SP - Brasil</p>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2025 Loja 3F. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script src="js/products.js"></script>
+</body>
+</html>
+

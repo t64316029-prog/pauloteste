@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Painel Administrativo - Loja 3F</title>
+    <link rel="stylesheet" href="admin/css/admin.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <button class="mobile-menu-btn"><i class="fas fa-bars"></i></button>
+    
+    <div class="admin-container">
+        <aside class="admin-sidebar">
+            <div class="admin-logo">
+                <h1>Loja 3F</h1>
+                <p>Painel Administrativo</p>
+            </div>
+            <nav class="admin-nav">
+                <a class="nav-item active" onclick="showSection('dashboard')">
+                    <i class="fas fa-chart-line"></i>
+                    <span>Dashboard</span>
+                </a>
+                <a class="nav-item" onclick="showSection('products')">
+                    <i class="fas fa-box"></i>
+                    <span>Produtos</span>
+                </a>
+                <a class="nav-item" onclick="showSection('categories')">
+                    <i class="fas fa-tags"></i>
+                    <span>Categorias</span>
+                </a>
+                <a class="nav-item" onclick="showSection('promotions')">
+                    <i class="fas fa-percent"></i>
+                    <span>Promoções</span>
+                </a>
+                <a class="nav-item" onclick="showSection('stock')">
+                    <i class="fas fa-warehouse"></i>
+                    <span>Estoque</span>
+                </a>
+                <a class="nav-item" onclick="showSection('orders')">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span>Pedidos</span>
+                </a>
+                <a class="nav-item" onclick="showSection('sales')">
+                    <i class="fas fa-chart-bar"></i>
+                    <span>Vendas</span>
+                </a>
+                <a class="nav-item" onclick="showSection('slider')">
+                    <i class="fas fa-images"></i>
+                    <span>Slider</span>
+                </a>
+                <a class="nav-item" onclick="showSection('settings')">
+                    <i class="fas fa-cog"></i>
+                    <span>Configurações</span>
+                </a>
+            </nav>
+        </aside>
+
+        <main class="admin-main">
+            <div class="admin-header">
+                <h2 id="sectionTitle">Dashboard</h2>
+                <div class="admin-user">
+                    <span id="adminUsername">Admin</span>
+                    <button class="btn-logout" onclick="adminLogout()">
+                        <i class="fas fa-sign-out-alt"></i> Sair
+                    </button>
+                </div>
+            </div>
+
+            <!-- Dashboard -->
+            <section id="dashboard" class="admin-section active">
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-card-header">
+                            <span class="stat-card-title">Total Produtos</span>
+                            <i class="fas fa-box stat-card-icon"></i>
+                        </div>
+                        <div class="stat-card-value" id="statTotalProducts">0</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-card-header">
+                            <span class="stat-card-title">Pedidos</span>
+                            <i class="fas fa-shopping-cart stat-card-icon"></i>
+                        </div>
+                        <div class="stat-card-value" id="statTotalOrders">0</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-card-header">
+                            <span class="stat-card-title">Estoque Baixo</span>
+                            <i class="fas fa-exclamation-triangle stat-card-icon"></i>
+                        </div>
+                        <div class="stat-card-value" id="statLowStock">0</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-card-header">
+                            <span class="stat-card-title">Promoções Ativas</span>
+                            <i class="fas fa-percent stat-card-icon"></i>
+                        </div>
+                        <div class="stat-card-value" id="statActivePromotions">0</div>
+                    </div>
+                </div>
+                <div class="section-card">
+                    <h3 class="section-title">Alertas de Estoque</h3>
+                    <div id="stockAlerts"></div>
+                </div>
+            </section>
+
+            <!-- Products -->
+            <section id="products" class="admin-section">
+                <div class="section-card">
+                    <div class="section-header">
+                        <h3 class="section-title">Gerenciar Produtos</h3>
+                        <button class="btn btn-primary" onclick="showAddProductModal()">
+                            <i class="fas fa-plus"></i> Adicionar
+                        </button>
+                    </div>
+                    <div id="productsList"></div>
+                </div>
+            </section>
+
+            <!-- Categories -->
+            <section id="categories" class="admin-section">
+                <div class="section-card">
+                    <div class="section-header">
+                        <h3 class="section-title">Gerenciar Categorias</h3>
+                        <button class="btn btn-primary" onclick="showAddCategoryModal()">
+                            <i class="fas fa-plus"></i> Adicionar
+                        </button>
+                    </div>
+                    <div id="categoriesList"></div>
+                </div>
+            </section>
+
+            <!-- Promotions -->
+            <section id="promotions" class="admin-section">
+                <div class="section-card">
+                    <div class="section-header">
+                        <h3 class="section-title">Gerenciar Promoções</h3>
+                        <button class="btn btn-primary" onclick="showAddPromotionModal()">
+                            <i class="fas fa-plus"></i> Nova Promoção
+                        </button>
+                    </div>
+                    <div id="promotionsList"></div>
+                </div>
+            </section>
+
+            <!-- Stock -->
+            <section id="stock" class="admin-section">
+                <div class="section-card">
+                    <div class="section-header">
+                        <h3 class="section-title">Controle de Estoque</h3>
+                        <button class="btn btn-secondary" onclick="downloadStockReport()">
+                            <i class="fas fa-download"></i> Relatório
+                        </button>
+                    </div>
+                    <div id="stockList"></div>
+                </div>
+            </section>
+
+            <!-- Orders -->
+            <section id="orders" class="admin-section">
+                <div class="section-card">
+                    <h3 class="section-title">Pedidos e Notas Fiscais</h3>
+                    <div id="ordersList"></div>
+                </div>
+            </section>
+
+            <!-- Sales -->
+            <section id="sales" class="admin-section">
+                <div class="section-card">
+                    <h3 class="section-title">Relatório de Vendas</h3>
+                    <div id="salesContent"></div>
+                </div>
+            </section>
+
+            <!-- Slider -->
+            <section id="slider" class="admin-section">
+                <div class="section-card">
+                    <h3 class="section-title">Editar Slider Principal</h3>
+                    <div id="sliderList"></div>
+                </div>
+            </section>
+
+            <!-- Settings -->
+            <section id="settings" class="admin-section">
+                <div class="section-card">
+                    <h3 class="section-title">Configurações Gerais</h3>
+                    <form id="settingsForm" onsubmit="saveGeneralSettings(event)">
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label>Parcelamento (vezes)</label>
+                                <input type="number" class="form-control" id="installments" min="1" max="24">
+                            </div>
+                            <div class="form-group">
+                                <label>Desconto PIX (%)</label>
+                                <input type="number" class="form-control" id="pixDiscount" min="0" max="100">
+                            </div>
+                            <div class="form-group">
+                                <label>Alerta Estoque Baixo</label>
+                                <input type="number" class="form-control" id="lowStockAlert" min="1">
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-success">
+                            <i class="fas fa-save"></i> Salvar
+                        </button>
+                    </form>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="js/products.js"></script>
+    <script src="js/categories.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/settings.js"></script>
+    <script src="js/orders.js"></script>
+    <script src="js/promotions.js"></script>
+    <script src="js/stock.js"></script>
+    <script src="admin/js/admin.js"></script>
+</body>
+</html>

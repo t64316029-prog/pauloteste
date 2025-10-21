@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Carrinho de Compras - Loja 3F">
+    <title>Carrinho - Loja 3F</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .cart-container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 2rem;
+            margin-top: 100px;
+            min-height: 60vh;
+        }
+
+        .cart-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .cart-items {
+            background-color: var(--black-secondary);
+            border: 1px solid var(--gold-primary);
+            border-radius: 8px;
+            padding: 2rem;
+        }
+
+        .cart-item {
+            display: grid;
+            grid-template-columns: 120px 1fr auto;
+            gap: 1.5rem;
+            padding: 1.5rem 0;
+            border-bottom: 1px solid rgba(221, 157, 23, 0.2);
+        }
+
+        .cart-item:last-child {
+            border-bottom: none;
+        }
+
+        .cart-item-image {
+            width: 120px;
+            height: 120px;
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid var(--gold-primary);
+        }
+
+        .cart-item-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .cart-item-info h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .cart-item-size {
+            color: #999;
+            margin-bottom: 0.5rem;
+        }
+
+        .cart-item-price {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--gold-primary);
+        }
+
+        .quantity-controls {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .quantity-btn {
+            width: 32px;
+            height: 32px;
+            border: 1px solid var(--gold-primary);
+            background: transparent;
+            color: var(--gold-primary);
+            border-radius: 4px;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+        }
+
+        .quantity-btn:hover {
+            background: var(--gold-primary);
+            color: var(--black-primary);
+        }
+
+        .quantity-display {
+            font-weight: 600;
+            min-width: 40px;
+            text-align: center;
+        }
+
+        .remove-btn {
+            background: transparent;
+            border: none;
+            color: #ef4444;
+            cursor: pointer;
+            padding: 0.5rem;
+            transition: var(--transition-smooth);
+        }
+
+        .remove-btn:hover {
+            transform: scale(1.2);
+        }
+
+        .cart-summary {
+            background-color: var(--black-secondary);
+            border: 1px solid var(--gold-primary);
+            border-radius: 8px;
+            padding: 2rem;
+            height: fit-content;
+            position: sticky;
+            top: 100px;
+        }
+
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 1rem 0;
+            border-bottom: 1px solid rgba(221, 157, 23, 0.2);
+        }
+
+        .summary-row:last-child {
+            border-bottom: none;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--gold-primary);
+        }
+
+        .empty-cart {
+            text-align: center;
+            padding: 4rem 2rem;
+        }
+
+        .empty-cart i {
+            font-size: 5rem;
+            color: var(--gold-primary);
+            margin-bottom: 2rem;
+        }
+
+        @media (max-width: 768px) {
+            .cart-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .cart-item {
+                grid-template-columns: 80px 1fr;
+                gap: 1rem;
+            }
+
+            .cart-item-image {
+                width: 80px;
+                height: 80px;
+            }
+
+            .cart-item-actions {
+                grid-column: 1 / -1;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header" id="header">
+        <div class="header-container">
+            <a href="index.html" class="logo">Loja 3F</a>
+            
+            <nav>
+                <ul class="nav-menu">
+                    <li><a href="index.html">Início</a></li>
+                    <li><a href="produtos.html">Produtos</a></li>
+                </ul>
+            </nav>
+
+            <button class="cart-icon" onclick="window.location.href='carrinho.html'">
+                <i class="fas fa-shopping-cart"></i>
+                <span class="cart-count" id="cart-count">0</span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Cart Container -->
+    <div class="cart-container">
+        <h1 class="section-title">Seu <span class="highlight">Carrinho</span></h1>
+
+        <div id="cartContent">
+            <!-- Conteúdo do carrinho será carregado via JavaScript -->
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-section">
+                <h3>Loja 3F</h3>
+                <p>Vestuário de qualidade com estilo único. Camisas e bonés exclusivos para quem busca autenticidade.</p>
+                <div class="social-links">
+                    <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="https://facebook.com" target="_blank" rel="noopener noreferrer">
+                        <i class="fab fa-facebook"></i>
+                    </a>
+                    <a href="https://twitter.com" target="_blank" rel="noopener noreferrer">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                </div>
+            </div>
+
+            <div class="footer-section">
+                <h3>Links Rápidos</h3>
+                <p><a href="index.html">Início</a></p>
+                <p><a href="produtos.html">Produtos</a></p>
+                <p><a href="carrinho.html">Carrinho</a></p>
+            </div>
+
+            <div class="footer-section">
+                <h3>Contato</h3>
+                <p><i class="fas fa-phone"></i> (11) 99999-9999</p>
+                <p><i class="fas fa-envelope"></i> contato@loja3f.com.br</p>
+                <p><i class="fas fa-map-marker-alt"></i> São Paulo, SP - Brasil</p>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2025 Loja 3F. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script src="js/products.js"></script>
+    <script>
+        function renderCart() {
+            const cart = getCart();
+            const container = document.getElementById('cartContent');
+
+            if (cart.length === 0) {
+                container.innerHTML = `
+                    <div class="empty-cart">
+                        <i class="fas fa-shopping-cart"></i>
+                        <h2 style="font-size: 2rem; margin-bottom: 1rem;">Seu carrinho está vazio</h2>
+                        <p style="color: #999; margin-bottom: 2rem;">Adicione produtos ao carrinho para continuar comprando</p>
+                        <a href="produtos.html" class="btn btn-primary">
+                            <i class="fas fa-shopping-bag"></i> Ver Produtos
+                        </a>
+                    </div>
+                `;
+                return;
+            }
+
+            const itemsHTML = cart.map(item => `
+                <div class="cart-item">
+                    <div class="cart-item-image">
+                        <img src="${item.image}" alt="${item.name}">
+                    </div>
+                    <div class="cart-item-info">
+                        <h3>${item.name}</h3>
+                        <div class="cart-item-size">Tamanho: ${item.size}</div>
+                        <div class="cart-item-price">${formatPrice(item.price)}</div>
+                        <div class="quantity-controls">
+                            <button class="quantity-btn" onclick="updateQuantity(${item.id}, '${item.size}', ${item.quantity - 1})">
+                                <i class="fas fa-minus"></i>
+                            </button>
+                            <span class="quantity-display">${item.quantity}</span>
+                            <button class="quantity-btn" onclick="updateQuantity(${item.id}, '${item.size}', ${item.quantity + 1})">
+                                <i class="fas fa-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="cart-item-actions">
+                        <button class="remove-btn" onclick="removeItem(${item.id}, '${item.size}')">
+                            <i class="fas fa-trash" style="font-size: 1.5rem;"></i>
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+
+            const subtotal = getCartTotal();
+            const shipping = 0; // Frete grátis
+            const total = subtotal + shipping;
+
+            container.innerHTML = `
+                <div class="cart-grid">
+                    <div class="cart-items">
+                        <h2 style="margin-bottom: 1.5rem;">Itens do Carrinho</h2>
+                        ${itemsHTML}
+                        <button class="btn btn-outline" onclick="clearCartConfirm()" style="margin-top: 2rem;">
+                            <i class="fas fa-trash"></i> Limpar Carrinho
+                        </button>
+                    </div>
+                    <div class="cart-summary">
+                        <h2 style="margin-bottom: 1.5rem;">Resumo do Pedido</h2>
+                        <div class="summary-row">
+                            <span>Subtotal:</span>
+                            <span>${formatPrice(subtotal)}</span>
+                        </div>
+                        <div class="summary-row">
+                            <span>Frete:</span>
+                            <span style="color: var(--gold-primary);">GRÁTIS</span>
+                        </div>
+                        <div class="summary-row">
+                            <span>Total:</span>
+                            <span>${formatPrice(total)}</span>
+                        </div>
+                        <button class="btn btn-primary" style="width: 100%; margin-top: 2rem; padding: 1.5rem; font-size: 1.1rem;" onclick="checkout()">
+                            <i class="fas fa-check"></i> Finalizar Compra
+                        </button>
+                        <div style="margin-top: 1.5rem; padding: 1rem; background: rgba(221, 157, 23, 0.1); border-radius: 4px; text-align: center;">
+                            <i class="fas fa-qrcode" style="color: var(--gold-primary);"></i>
+                            <p style="margin-top: 0.5rem; font-size: 0.9rem;">5% de desconto pagando com Pix</p>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function updateQuantity(productId, size, newQuantity) {
+            updateCartItemQuantity(productId, size, newQuantity);
+            renderCart();
+        }
+
+        function removeItem(productId, size) {
+            removeFromCart(productId, size);
+            renderCart();
+            showNotification('Produto removido do carrinho', 'success');
+        }
+
+        function clearCartConfirm() {
+            if (confirm('Tem certeza que deseja limpar o carrinho?')) {
+                clearCart();
+                renderCart();
+                showNotification('Carrinho limpo com sucesso', 'success');
+            }
+        }
+
+        function checkout() {
+            showNotification('Funcionalidade de checkout em desenvolvimento!', 'info');
+        }
+
+        // Renderizar carrinho ao carregar
+        document.addEventListener('DOMContentLoaded', renderCart);
+    </script>
+</body>
+</html>
+
