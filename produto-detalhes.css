@@ -1,0 +1,241 @@
+/* ============================================
+   Página de Detalhes do Produto - Responsivo
+   ============================================ */
+
+.product-detail-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  margin-top: 2rem;
+}
+
+.product-detail-image {
+  width: 100%;
+  border-radius: 8px;
+  border: 1px solid var(--gold-primary);
+}
+
+.product-detail-image img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  background-color: #1a1a1a;
+}
+
+.product-detail-info {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.product-detail-title {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  line-height: 1.2;
+}
+
+.product-detail-prices {
+  display: flex;
+  align-items: baseline;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+}
+
+.product-detail-price-original {
+  font-size: 1.2rem;
+  color: #999;
+  text-decoration: line-through;
+}
+
+.product-detail-price-current {
+  font-size: 3rem;
+  font-weight: 700;
+  color: var(--gold-primary);
+}
+
+.product-detail-discount-badge {
+  background: var(--gold-primary);
+  color: var(--black-primary);
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  font-weight: 700;
+}
+
+.product-detail-description {
+  color: #999;
+  line-height: 1.8;
+  font-size: 1.1rem;
+}
+
+.size-selector-container {
+  margin-bottom: 2rem;
+}
+
+.size-selector-container h3 {
+  margin-bottom: 1rem;
+  font-size: 1.2rem;
+}
+
+.size-selector {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.size-btn {
+  padding: 1rem 1.5rem;
+  border: 2px solid var(--gold-primary);
+  background: transparent;
+  color: var(--text-light);
+  border-radius: 4px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  min-width: 60px;
+}
+
+.size-btn.selected {
+  background: var(--gold-primary);
+  color: var(--black-primary);
+}
+
+.add-to-cart-large {
+  width: 100%;
+  padding: 1.5rem;
+  font-size: 1.2rem;
+  background-color: var(--gold-primary);
+  color: var(--black-primary);
+  border: none;
+  border-radius: 4px;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.payment-info {
+  margin-top: 2rem;
+  padding: 1.5rem;
+  background: var(--black-secondary);
+  border-radius: 8px;
+  border: 1px solid var(--gold-primary);
+}
+
+.payment-info p {
+  margin-bottom: 0.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.payment-info i {
+  color: var(--gold-primary);
+}
+
+/* ============================================
+   Responsivo Mobile
+   ============================================ */
+
+@media (max-width: 768px) {
+  .product-detail-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    padding: 0 1rem;
+  }
+
+  .product-detail-title {
+    font-size: 1.8rem;
+  }
+
+  .product-detail-price-current {
+    font-size: 2rem;
+  }
+
+  .product-detail-price-original {
+    font-size: 1rem;
+  }
+
+  .product-detail-description {
+  @media (max-width: 768px) {
+  .size-selector {
+    gap: 0.5rem;
+  }
+
+  .size-btn {
+    padding: 0.5rem 0.75rem;
+    min-width: 40px;
+    font-size: 0.8rem;
+  }.add-to-cart-large {
+    padding: 1.2rem;
+    font-size: 1rem;
+  }
+
+  .payment-info {
+    padding: 1rem;
+  }
+
+  .payment-info p {
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .product-detail-grid {
+    padding: 0 0.5rem;
+    gap: 0.75rem;
+  }
+
+  .product-detail-title {
+    font-size: 1.3rem;
+    line-height: 1.3;
+  }
+
+  .product-detail-price-current {
+    font-size: 1.5rem;
+  }
+
+  .product-detail-prices {
+    gap: 0.4rem;
+  }
+
+  .product-detail-discount-badge {
+    padding: 0.3rem 0.6rem;
+    font-size: 0.75rem;
+  }
+
+  .product-detail-description {
+    font-size: 0.85rem;
+    line-height: 1.5;
+  }
+
+  .size-selector-container h3 {
+    font-size: 0.9rem;
+  }
+
+  .size-selector {
+    gap: 0.4rem;
+  }
+
+  .size-btn {
+    padding: 0.5rem 0.65rem;
+    min-width: 38px;
+    font-size: 0.75rem;
+  }
+
+  .add-to-cart-large {
+    padding: 0.85rem;
+    font-size: 0.85rem;
+  }
+
+  .payment-info {
+    padding: 0.75rem;
+  }
+
+  .payment-info p {
+    font-size: 0.8rem;
+  }
+}
+
